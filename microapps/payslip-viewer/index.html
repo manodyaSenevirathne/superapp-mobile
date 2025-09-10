@@ -1,0 +1,320 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Payslip Viewer</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+        
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            overflow: hidden;
+        }
+        
+        .header {
+            background: #2563EB;
+            color: white;
+            padding: 20px;
+            text-align: center;
+        }
+        
+        .header h1 {
+            font-size: 24px;
+            margin-bottom: 5px;
+        }
+        
+        .header p {
+            opacity: 0.9;
+            font-size: 14px;
+        }
+        
+        .payslip-content {
+            padding: 30px;
+        }
+        
+        .employee-info {
+            margin-bottom: 30px;
+            padding: 20px;
+            background: #f8fafc;
+            border-radius: 8px;
+            border-left: 4px solid #2563EB;
+        }
+        
+        .info-row {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 10px;
+        }
+        
+        .info-row:last-child {
+            margin-bottom: 0;
+        }
+        
+        .label {
+            font-weight: 600;
+            color: #374151;
+        }
+        
+        .value {
+            color: #6b7280;
+        }
+        
+        .earnings-section, .deductions-section {
+            margin-bottom: 30px;
+        }
+        
+        .section-title {
+            font-size: 18px;
+            font-weight: 600;
+            color: #1f2937;
+            margin-bottom: 15px;
+            padding-bottom: 8px;
+            border-bottom: 2px solid #e5e7eb;
+        }
+        
+        .earnings {
+            background: #f0f9ff;
+            border: 1px solid #bae6fd;
+        }
+        
+        .deductions {
+            background: #fef2f2;
+            border: 1px solid #fecaca;
+        }
+        
+        .earnings, .deductions {
+            padding: 20px;
+            border-radius: 8px;
+        }
+        
+        .net-pay {
+            background: #10b981;
+            color: white;
+            padding: 20px;
+            border-radius: 8px;
+            text-align: center;
+            margin-top: 20px;
+        }
+        
+        .net-pay h3 {
+            font-size: 20px;
+            margin-bottom: 5px;
+        }
+        
+        .net-pay .amount {
+            font-size: 28px;
+            font-weight: 700;
+        }
+        
+        .download-btn {
+            background: #2563EB;
+            color: white;
+            padding: 12px 24px;
+            border: none;
+            border-radius: 6px;
+            font-size: 16px;
+            cursor: pointer;
+            width: 100%;
+            margin-top: 20px;
+            transition: background 0.3s;
+        }
+        
+        .download-btn:hover {
+            background: #1d4ed8;
+        }
+        
+        .bridge-info {
+            background: #fffbeb;
+            border: 1px solid #fbbf24;
+            padding: 15px;
+            border-radius: 6px;
+            margin-top: 20px;
+            font-size: 14px;
+            color: #92400e;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>🧾 Payslip Viewer</h1>
+            <p>Government Employee Portal</p>
+        </div>
+        
+        <div class="payslip-content">
+            <div class="employee-info">
+                <h3 style="margin-bottom: 15px; color: #2563EB;">Employee Information</h3>
+                <div class="info-row">
+                    <span class="label">Employee ID:</span>
+                    <span class="value" id="employee-id">EMP001</span>
+                </div>
+                <div class="info-row">
+                    <span class="label">Name:</span>
+                    <span class="value" id="employee-name">John Doe</span>
+                </div>
+                <div class="info-row">
+                    <span class="label">Department:</span>
+                    <span class="value">IT Department</span>
+                </div>
+                <div class="info-row">
+                    <span class="label">Pay Period:</span>
+                    <span class="value">September 2025</span>
+                </div>
+            </div>
+            
+            <div class="earnings-section">
+                <h3 class="section-title">💰 Earnings</h3>
+                <div class="earnings">
+                    <div class="info-row">
+                        <span class="label">Basic Salary:</span>
+                        <span class="value">$5,000.00</span>
+                    </div>
+                    <div class="info-row">
+                        <span class="label">Allowances:</span>
+                        <span class="value">$1,200.00</span>
+                    </div>
+                    <div class="info-row">
+                        <span class="label">Overtime:</span>
+                        <span class="value">$300.00</span>
+                    </div>
+                    <div class="info-row" style="border-top: 1px solid #bae6fd; padding-top: 10px; margin-top: 10px; font-weight: 600;">
+                        <span class="label">Total Earnings:</span>
+                        <span class="value">$6,500.00</span>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="deductions-section">
+                <h3 class="section-title">📉 Deductions</h3>
+                <div class="deductions">
+                    <div class="info-row">
+                        <span class="label">Income Tax:</span>
+                        <span class="value">$650.00</span>
+                    </div>
+                    <div class="info-row">
+                        <span class="label">Social Security:</span>
+                        <span class="value">$325.00</span>
+                    </div>
+                    <div class="info-row">
+                        <span class="label">Health Insurance:</span>
+                        <span class="value">$200.00</span>
+                    </div>
+                    <div class="info-row" style="border-top: 1px solid #fecaca; padding-top: 10px; margin-top: 10px; font-weight: 600;">
+                        <span class="label">Total Deductions:</span>
+                        <span class="value">$1,175.00</span>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="net-pay">
+                <h3>💵 Net Pay</h3>
+                <div class="amount">$5,325.00</div>
+            </div>
+            
+            <button class="download-btn" onclick="downloadPayslip()">
+                📄 Download PDF
+            </button>
+            
+            <button class="download-btn" onclick="requestToken()" style="background: #059669; margin-top: 10px;">
+                🔑 Test Bridge - Get Auth Token
+            </button>
+            
+            <div class="bridge-info">
+                <strong>🌉 Bridge Connection:</strong> <span id="bridge-status">Checking...</span>
+                <br><strong>📱 User Info:</strong> <span id="user-info">Loading...</span>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Check if bridge is available
+        function checkBridge() {
+            if (window.nativebridge) {
+                document.getElementById('bridge-status').textContent = 'Connected ✅';
+                document.getElementById('bridge-status').style.color = '#059669';
+                return true;
+            } else {
+                document.getElementById('bridge-status').textContent = 'Not Available ❌';
+                document.getElementById('bridge-status').style.color = '#dc2626';
+                return false;
+            }
+        }
+        
+        // Request authentication token from native app
+        function requestToken() {
+            if (checkBridge()) {
+                window.nativebridge.requestToken();
+            } else {
+                alert('Bridge not available - running in web mode');
+            }
+        }
+        
+        // Handle token response from native app
+        window.nativebridge = window.nativebridge || {};
+        window.nativebridge.resolveToken = function(token) {
+            document.getElementById('user-info').textContent = 'Token received ✅';
+            console.log('Received token:', token);
+            
+            // You could use this token to fetch real payslip data
+            // fetchPayslipData(token);
+        };
+        
+        // Download payslip functionality
+        function downloadPayslip() {
+            if (checkBridge()) {
+                window.nativebridge.requestAlert(
+                    'Download Complete',
+                    'Your payslip has been downloaded to your device.',
+                    'OK'
+                );
+            } else {
+                alert('Download Complete - Payslip saved!');
+            }
+        }
+        
+        // Initialize on page load
+        document.addEventListener('DOMContentLoaded', function() {
+            checkBridge();
+            
+            // Show current date
+            const now = new Date();
+            const monthNames = ["January", "February", "March", "April", "May", "June",
+                "July", "August", "September", "October", "November", "December"];
+            document.querySelector('.value:last-child').textContent = 
+                monthNames[now.getMonth()] + ' ' + now.getFullYear();
+        });
+        
+        // Test bridge functions
+        window.testBridge = function() {
+            if (window.nativebridge) {
+                console.log('Testing bridge functions...');
+                
+                // Test alert
+                window.nativebridge.requestAlert('Test', 'Bridge is working!', 'Great');
+                
+                // Test token request
+                window.nativebridge.requestToken();
+                
+                // Test save data
+                window.nativebridge.requestSaveLocalData('test-key', 'test-value');
+            }
+        };
+    </script>
+</body>
+</html>

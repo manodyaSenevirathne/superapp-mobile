@@ -92,7 +92,13 @@ export const Colors = {
     modalBorderColor: "#EBEBEB", // Modal outline border color
   },
 
-  companyOrange: "#FF7300", // Company brand accent color
+  // Dynamic brand colors - can be overridden by app config
+  get companyBrand() {
+    // Import here to avoid circular dependency
+    const { getAppConfig } = require("../config/governmentConfig");
+    return getAppConfig().brandColor;
+  },
+  companyOrange: "#2563EB", // Updated to government blue
   actionButtonTextColor: "#4989F7", // Action button text color
   removeButtonTextColor: "#EB4E3D", // Remove button text color
 };

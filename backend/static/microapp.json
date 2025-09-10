@@ -1,0 +1,12 @@
+{
+  "clientId": "payslip-viewer-client",
+  "name": "Payslip Viewer",
+  "description": "View your monthly payslip with earnings, deductions, and net pay",
+  "version": "1.0.0",
+  "author": "Government IT Department",
+  "permissions": [
+    "token",
+    "alert",
+    "storage"
+  ]
+}

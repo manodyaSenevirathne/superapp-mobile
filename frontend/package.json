@@ -1,5 +1,5 @@
 {
-  "name": "wso2-superapp-mobile",
+  "name": "government-superapp-mobile",
   "main": "expo-router/entry",
   "version": "1.0.0",
   "scripts": {
